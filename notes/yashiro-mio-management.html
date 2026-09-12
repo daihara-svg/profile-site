@@ -1,0 +1,513 @@
+<title>社美緒のマネジメント理論</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+  /* 夜の歌舞伎町を一枚の版画にするつもりの単一テーマ。明暗の切替はしない。 */
+  :root{
+    --ground:#0B0D12;
+    --surface:#141822;
+    --surface-2:#1B2130;
+    --ink:#EAE7E0;
+    --ink-2:#A7AEBC;
+    --ink-3:#767E8E;
+    --gold:#D9B551;
+    --gold-dim:#8C7430;
+    --gold-wash:rgba(217,181,81,.10);
+    --slate:#5E6878;
+    --rule:rgba(217,181,81,.22);
+    --rule-2:rgba(167,174,188,.18);
+    --serif:"Shippori Mincho B1",'Hiragino Mincho ProN','Yu Mincho',serif;
+    --sans:"Zen Kaku Gothic New",'Hiragino Sans','Yu Gothic',sans-serif;
+    --measure:34rem;
+  }
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.9;
+    margin:0;
+    padding:0 20px 96px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:60rem;margin:0 auto}
+  p{margin:0 0 1.1em;max-width:var(--measure)}
+  a{color:var(--gold);text-underline-offset:3px;text-decoration-color:var(--gold-dim)}
+  a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+  /* ---- 表紙 ---- */
+  header{padding-block:72px 40px;border-bottom:1px solid var(--rule)}
+  .eyebrow{
+    font-size:.72rem;letter-spacing:.22em;color:var(--gold);
+    font-weight:700;margin:0 0 20px;text-transform:uppercase;
+  }
+  h1{
+    font-family:var(--serif);font-weight:800;
+    font-size:clamp(2.3rem,6vw,3.6rem);line-height:1.25;
+    margin:0 0 18px;text-wrap:balance;letter-spacing:.02em;
+  }
+  .sub{font-size:1.02rem;color:var(--ink-2);max-width:36rem;margin:0}
+  .stamp{
+    margin-top:28px;font-size:.8rem;color:var(--ink-3);
+    display:flex;flex-wrap:wrap;gap:6px 20px;
+  }
+
+  /* ---- 出典の等級 ---- */
+  .tiers{
+    display:flex;flex-wrap:wrap;gap:10px 14px;
+    margin:28px 0 0;padding:16px 18px;
+    background:var(--surface);border:1px solid var(--rule-2);
+  }
+  .tier{
+    font-size:.74rem;letter-spacing:.06em;font-weight:700;
+    padding:2px 10px;white-space:nowrap;
+  }
+  .t1{color:#0B0D12;background:var(--gold)}
+  .t2{color:var(--gold);border:1px solid var(--gold-dim)}
+  .t3{color:var(--ink-3);border:1px dashed var(--slate)}
+  .tier-note{font-size:.78rem;color:var(--ink-3);line-height:1.7;flex:1 1 16rem;min-width:0}
+
+  /* ---- 章 ---- */
+  section{padding-block:56px;border-bottom:1px solid var(--rule-2)}
+  h2{
+    font-family:var(--serif);font-weight:700;
+    font-size:clamp(1.4rem,3.4vw,1.85rem);line-height:1.5;
+    margin:0 0 6px;text-wrap:balance;
+  }
+  .h2-note{font-size:.82rem;color:var(--ink-3);margin:0 0 28px;letter-spacing:.04em}
+
+  blockquote{
+    margin:0 0 24px;padding:22px 24px;
+    background:var(--gold-wash);border-left:3px solid var(--gold);
+  }
+  blockquote p{font-family:var(--serif);font-size:1.06rem;line-height:1.95;margin:0;max-width:40rem}
+  blockquote cite{display:block;margin-top:14px;font-style:normal;font-size:.78rem;color:var(--ink-2)}
+
+  /* ---- 柱 ---- */
+  .pillars{display:flex;flex-direction:column;gap:2px;margin-top:8px}
+  .pillar{
+    display:grid;grid-template-columns:7.5rem 1fr;gap:0 28px;
+    background:var(--surface);padding:26px 26px 22px;
+    border-left:2px solid var(--gold-dim);
+  }
+  .pillar .role{
+    font-family:var(--serif);font-size:1.05rem;color:var(--gold);
+    letter-spacing:.14em;line-height:1.6;
+  }
+  .pillar .role small{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.1em;color:var(--ink-3);margin-top:4px}
+  .pillar h3{font-size:1.12rem;font-weight:700;margin:0 0 10px;line-height:1.6}
+  .pillar p{font-size:.95rem;color:var(--ink-2);margin-bottom:.9em}
+  .pillar p:last-child{margin-bottom:0}
+  .pillar strong{color:var(--ink);font-weight:700}
+  .src{font-size:.74rem;color:var(--ink-3);letter-spacing:.02em}
+
+  /* ---- 図 ---- */
+  figure{margin:36px 0 0;padding:0}
+  figure svg{display:block;width:100%;max-width:100%;height:auto;color:var(--ink-2)}
+  .svg-hold{background:var(--surface);border:1px solid var(--rule-2);padding:22px 18px;overflow-x:auto}
+  figcaption{font-size:.82rem;color:var(--ink-3);margin-top:12px;line-height:1.75;max-width:44rem}
+
+  /* ---- 原因×打ち手 ---- */
+  .matrix{width:100%;border-collapse:collapse;font-size:.9rem}
+  .matrix th{
+    text-align:left;font-size:.72rem;letter-spacing:.12em;color:var(--ink-3);
+    font-weight:700;padding:0 14px 10px;border-bottom:1px solid var(--rule);
+  }
+  .matrix td{padding:16px 14px;border-bottom:1px solid var(--rule-2);vertical-align:top;line-height:1.75}
+  .matrix tr td:first-child{font-weight:700;color:var(--ink);width:26%}
+  .matrix .no{color:var(--slate);width:34%}
+  .matrix .yes{color:var(--gold)}
+  .m-hold{overflow-x:auto}
+  .matrix-wrap{min-width:38rem}
+
+  /* ---- 読み替え ---- */
+  .apply{background:var(--surface-2);padding:28px 26px;border-top:2px solid var(--gold-dim)}
+  .apply h3{font-size:1.02rem;margin:0 0 16px;font-weight:700}
+  .apply ul{margin:0;padding-left:1.2em;color:var(--ink-2);font-size:.94rem}
+  .apply li{margin-bottom:.7em;padding-left:.2em}
+  .apply li:last-child{margin-bottom:0}
+
+  /* ---- 検証 ---- */
+  .verify{width:100%;border-collapse:collapse;font-size:.9rem}
+  .verify th{text-align:left;font-size:.72rem;letter-spacing:.12em;color:var(--ink-3);font-weight:700;padding:0 12px 10px;border-bottom:1px solid var(--rule)}
+  .verify td{padding:14px 12px;border-bottom:1px solid var(--rule-2);vertical-align:top;line-height:1.7}
+  .verify .mark{font-family:var(--serif);font-size:1.1rem;width:3.2rem;text-align:center}
+  .ok{color:var(--gold)}
+  .ng{color:#C77B7B}
+  .verify-wrap{min-width:40rem}
+
+  /* ---- 出典 ---- */
+  .refs{font-size:.86rem;color:var(--ink-2);line-height:1.9}
+  .refs ol{padding-left:1.4em;margin:0}
+  .refs li{margin-bottom:.6em}
+  .refs .kind{font-size:.72rem;color:var(--ink-3);letter-spacing:.06em}
+  footer{padding-top:40px;font-size:.78rem;color:var(--ink-3);line-height:1.8}
+
+  @media (max-width:620px){
+    .pillar{grid-template-columns:1fr;gap:14px}
+    .pillar .role{letter-spacing:.2em}
+    body{line-height:1.85}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    a{transition:color .18s ease}
+  }
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Group YGGDRASILL ／ 会長・社美緒</p>
+  <h1>売れるは能力、<br>残るは人格</h1>
+  <p class="sub">公開情報だけを材料に、社美緒（やしろ みお）のマネジメントを六本の柱として再構成したもの。本人の発言と、第三者の観察と、裏の取れなかった話を、同じ紙の上で混ぜずに置く。</p>
+  <div class="stamp">
+    <span>再構成：2026年9月12日</span>
+    <span>材料：本人のX投稿／外部記事／業界メディア</span>
+    <span>本人・グループへの取材は行っていない</span>
+  </div>
+
+  <div class="tiers">
+    <span class="tier t1">一次</span>
+    <span class="tier t2">二次</span>
+    <span class="tier t3">未確認</span>
+    <p class="tier-note">各記述の末尾に等級を置いた。<b>一次</b>＝本人のアカウントの投稿。<b>二次</b>＝第三者が本人の発信を要約・分析したもの（本人の言葉そのままではない）。<b>未確認</b>＝流通しているが出典にたどり着けなかったもの。この資料では未確認を本文の主張には使っていない。</p>
+  </div>
+</header>
+
+<section>
+  <h2>前提にある一本の線</h2>
+  <p class="h2-note">本人の言葉として確認できた、数少ない一次情報</p>
+  <blockquote>
+    <p>ホストは売れる迄だったら能力　成功するとなると性格　その後の財産の残り方は人格と感性による　問題はある程度人格と感性がズレてても売れる事は出来るので　本人がそれを成功と勘違いしてしまう事で　ホストを見れば見る程　つくづく人格に勝る財産は無いと感じている</p>
+    <cite>本人のX投稿（2026年2月22日）<span class="tier t1">一次</span></cite>
+  </blockquote>
+  <p>売れることと、続くことと、残ることを、別々の層として扱っている。ここが起点になる。売上は能力で届いてしまうので、売上だけを見ていると育成の対象を取り違える——という構えが、以下の柱すべての前提にある。</p>
+
+  <figure>
+    <div class="svg-hold">
+      <svg viewBox="0 0 720 250" role="img" aria-label="能力・性格・人格と感性の三層モデル。売れるまでは能力が決め、成功が続くかは性格が決め、財産が残るかは人格と感性が決める。">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 9,5 0,9" fill="currentColor"/>
+          </marker>
+        </defs>
+        <text x="0" y="22" font-size="12" fill="#767E8E">段階</text>
+        <text x="200" y="22" font-size="12" fill="#767E8E">そこを決めているもの</text>
+        <text x="520" y="22" font-size="12" fill="#767E8E">見誤ると起きること</text>
+
+        <text x="170" y="72" font-size="13" fill="#A7AEBC" text-anchor="end">その後に残るか</text>
+        <rect x="190" y="50" width="300" height="46" fill="rgba(217,181,81,.16)" stroke="#D9B551"/>
+        <text x="210" y="79" font-size="15" fill="#D9B551" font-weight="700">人格・感性</text>
+        <text x="520" y="79" font-size="12" fill="#767E8E">財産が残らない</text>
+
+        <text x="170" y="140" font-size="13" fill="#A7AEBC" text-anchor="end">成功が続くか</text>
+        <rect x="190" y="118" width="300" height="46" fill="rgba(167,174,188,.10)" stroke="#5E6878"/>
+        <text x="210" y="147" font-size="15" fill="#EAE7E0" font-weight="700">性格</text>
+        <text x="520" y="147" font-size="12" fill="#767E8E">一度きりで終わる</text>
+
+        <text x="170" y="208" font-size="13" fill="#A7AEBC" text-anchor="end">売れるまで</text>
+        <rect x="190" y="186" width="300" height="46" fill="rgba(167,174,188,.10)" stroke="#5E6878"/>
+        <text x="210" y="215" font-size="15" fill="#EAE7E0" font-weight="700">能力</text>
+        <text x="520" y="215" font-size="12" fill="#767E8E">売れた＝成功と誤認</text>
+
+        <line x1="120" y1="232" x2="120" y2="46" stroke="#8C7430" stroke-width="1" marker-end="url(#ar)"/>
+        <text x="112" y="130" font-size="11" fill="#8C7430" text-anchor="end" transform="rotate(-90 112 130)">時間</text>
+      </svg>
+    </div>
+    <figcaption>三つの層は積み上がる順に並ぶが、下の層だけでも売上は出てしまう。「売れているのに人が残らない」はこの図の一段目だけで走っている状態にあたる。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>六本の柱</h2>
+  <p class="h2-note">上から順ではなく、下の柱が欠けると上の柱が効かない、という依存関係で並べている</p>
+
+  <div class="pillars">
+
+    <div class="pillar">
+      <div class="role">土台<small>CREDIT</small></div>
+      <div>
+        <h3>言葉より先に、誰が言うかを作る</h3>
+        <p>ホストクラブのように序列と実力が毎月入れ替わる組織では、肩書きとルールだけでは人は動かない。<strong>実力と人間性の裏付けがあって初めて、同じ言葉が届く</strong>という前提に立っている。正論が通らないのは正論の中身ではなく、言う側の信用が足りていない状態だと扱う。 <span class="src">外部の分析記事（2025年1月）<span class="tier t2">二次</span></span></p>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="role">診断<small>DIAGNOSIS</small></div>
+      <div>
+        <h3>動けない原因を四つに分けて、手を変える</h3>
+        <p>結果が出ていない相手に同じ指導を繰り返さない。<strong>「なぜそうなっているのか」を先に見極め、原因ごとに関わり方を変える</strong>。変える対象として挙がるのは、伝え方・任せ方・確認の仕方・基準の見せ方・失敗の扱い方。</p>
+        <p>本人が何を考えているか、変わる意思はあるか、その変化を止めているものは何か——この三つを分解してから手を選ぶ、という順序になっている。 <span class="src">外部の分析記事（2025年1月）<span class="tier t2">二次</span></span></p>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="role">変換<small>CONVERSION</small></div>
+      <div>
+        <h3>苦手は直さず、別の強みに置き換える</h3>
+        <p>本人が自分を「陰キャ」と公言している。その上で指導は、<strong>苦手な部分を無理に矯正するのではなく、その人の個性を別の強みに変換する</strong>方向で行われる。明るく盛り上げる型を真似させる代わりに、知識で相手が知らない話題を出せる状態を作る、といった置き換えがこれにあたる。 <span class="src">ホスト求人メディアの特集記事／外部の分析記事<span class="tier t2">二次</span></span></p>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="role">委譲<small>DELEGATION</small></div>
+      <div>
+        <h3>任せることは、その人の数年後を引き受けること</h3>
+        <p>店を持たせる判断について、最初の二、三年は回るかもしれないが、その先で店が立ち行かなくなり本人が壊れてしまうのなら、<strong>本人が望んでいても簡単には任せない</strong>という立場をとる。夢を応援することと、準備不足のまま渡すことを切り分け、渡した側は数年後まで責任を負うものとして扱う。 <span class="src">外部の分析記事（2025年1月）<span class="tier t2">二次</span></span></p>
+        <p>実際の卒業の場面では、本人の「きちんと責任を負って成長したい」という希望に対し、移った先で新しいグループを作るくらいやり切ってほしい、という送り出し方をしている。手放すときに次の器が用意されている。 <span class="src">本人のX投稿<span class="tier t1">一次</span></span></p>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="role">仕組<small>SYSTEM</small></div>
+      <div>
+        <h3>教育と環境を、個人技から外に出す</h3>
+        <p>営業の型を「社塾」として言語化し、グループの外にも公開している。<strong>タイミングを売るとは毎日決まった時間に連絡すること、マメさとは常に自分のことを考えさせられること</strong>、会話の比率を七対三から四対六へ移していくこと——といった粒度まで落ちている。 <span class="src">受講メモのnote記事／業界メディア<span class="tier t2">二次</span></span></p>
+        <p>あわせて広報・撮影・デザインなどをバックオフィスが担い、プレイヤーが接客に集中できる状態を作っているとされる。育成を個人の熱意に依存させず、型と分業の両方で支える構えになっている。 <span class="src">ホスト求人メディアの特集記事<span class="tier t2">二次</span></span></p>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="role">自制<small>SELF</small></div>
+      <div>
+        <h3>上限は、自分の状態で決まる</h3>
+        <p>自分の特性と弱さを認めた上で、組織の中でどう立ち回るかを客観的に見ている、という評価が第三者から一貫して出ている。<strong>心が参ってきたときは信頼している部下に電話で愚痴を聞いてもらう</strong>という、逃がし弁の作り方にも言及がある。 <span class="src">外部の分析記事（2025年1月）※このソースのみ<span class="tier t2">二次</span></span></p>
+      </div>
+    </div>
+
+  </div>
+
+  <figure>
+    <div class="svg-hold">
+      <svg viewBox="0 0 720 430" role="img" aria-label="信用を土台とした診断と介入の循環。動けていない状態を観察し、原因を特定し、関わり方を変え、本人が動いて結果が出ることで信用が積み上がり、次の言葉が届きやすくなる。">
+        <defs>
+          <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <polygon points="0,1 9,5 0,9" fill="currentColor"/>
+          </marker>
+          <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <polygon points="0,1 9,5 0,9" fill="#D9B551"/>
+          </marker>
+        </defs>
+
+        <rect x="70" y="40" width="220" height="70" fill="#1B2130" stroke="#5E6878"/>
+        <text x="180" y="70" font-size="14" fill="#EAE7E0" text-anchor="middle" font-weight="700">動けていない</text>
+        <text x="180" y="92" font-size="11.5" fill="#767E8E" text-anchor="middle">結果ではなく状態を見る</text>
+
+        <rect x="430" y="40" width="220" height="70" fill="#1B2130" stroke="#D9B551"/>
+        <text x="540" y="70" font-size="14" fill="#D9B551" text-anchor="middle" font-weight="700">原因を特定する</text>
+        <text x="540" y="92" font-size="11.5" fill="#A7AEBC" text-anchor="middle">理解／納得／恐れ／不信</text>
+
+        <rect x="430" y="210" width="220" height="70" fill="#1B2130" stroke="#D9B551"/>
+        <text x="540" y="240" font-size="14" fill="#D9B551" text-anchor="middle" font-weight="700">関わり方を変える</text>
+        <text x="540" y="262" font-size="11.5" fill="#A7AEBC" text-anchor="middle">伝え方・任せ方・確認・基準・失敗</text>
+
+        <rect x="70" y="210" width="220" height="70" fill="#1B2130" stroke="#5E6878"/>
+        <text x="180" y="240" font-size="14" fill="#EAE7E0" text-anchor="middle" font-weight="700">本人が動く</text>
+        <text x="180" y="262" font-size="11.5" fill="#767E8E" text-anchor="middle">結果がついてくる</text>
+
+        <line x1="292" y1="75" x2="426" y2="75" stroke="currentColor" marker-end="url(#ar2)"/>
+        <text x="359" y="64" font-size="11.5" fill="#A7AEBC" text-anchor="middle">見極める</text>
+
+        <line x1="540" y1="112" x2="540" y2="206" stroke="#D9B551" marker-end="url(#ar3)"/>
+        <text x="552" y="165" font-size="11.5" fill="#D9B551">原因ごとに手を選ぶ</text>
+
+        <line x1="428" y1="245" x2="294" y2="245" stroke="currentColor" marker-end="url(#ar2)"/>
+        <text x="361" y="234" font-size="11.5" fill="#A7AEBC" text-anchor="middle">止めていたものを外す</text>
+
+        <line x1="180" y1="206" x2="180" y2="114" stroke="currentColor" marker-end="url(#ar2)"/>
+        <text x="168" y="165" font-size="11.5" fill="#A7AEBC" text-anchor="end">次の状態を見る</text>
+
+        <rect x="70" y="330" width="580" height="66" fill="rgba(217,181,81,.10)" stroke="#D9B551"/>
+        <text x="360" y="358" font-size="14" fill="#D9B551" text-anchor="middle" font-weight="700">信用 ＝ 実力と人間性の積み上げ（誰が言うか）</text>
+        <text x="360" y="380" font-size="11.5" fill="#A7AEBC" text-anchor="middle">ここが薄いと、上の循環は正論を言っているだけで空回りする</text>
+
+        <line x1="230" y1="326" x2="230" y2="286" stroke="#8C7430" stroke-dasharray="4 4" marker-end="url(#ar2)" color="#8C7430"/>
+        <line x1="490" y1="326" x2="490" y2="286" stroke="#8C7430" stroke-dasharray="4 4" marker-end="url(#ar2)" color="#8C7430"/>
+        <text x="360" y="314" font-size="11" fill="#8C7430" text-anchor="middle">言葉が届く条件</text>
+      </svg>
+    </div>
+    <figcaption>診断から介入までの一周。土台の帯がこの循環に条件を供給していて、信用が足りない状態では、上の四つの箱がどれだけ正しくても結果に変わらない。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>原因が違えば、効く手も違う</h2>
+  <p class="h2-note">「動けていない」を四つに割ったときの、効かない手と効く手</p>
+  <p>同じ「やれていない」でも、厳しく言えば済むのは一つもない。理解していない相手を強く叱れば萎縮するだけで、納得していない相手を待っても変わらない。信用されていない相手には、正論そのものが届かない。</p>
+  <figure>
+    <div class="m-hold">
+      <div class="matrix-wrap">
+      <table class="matrix">
+        <thead>
+          <tr><th>止めているもの</th><th>効かない手</th><th>効く手の方向</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>理解していない<br><span class="src">動き方が見えていない</span></td>
+            <td class="no">強く何度も注意する（萎縮させるだけ）</td>
+            <td class="yes">伝え方を変える。基準の見せ方を変えて、何をすればいいかを見える形にする</td>
+          </tr>
+          <tr>
+            <td>納得していない<br><span class="src">やる理由が腹に落ちていない</span></td>
+            <td class="no">何もせず待つ（時間では変わらない）</td>
+            <td class="yes">なぜそうするのかを、本人が使っている言葉に翻訳して渡す</td>
+          </tr>
+          <tr>
+            <td>怖い<br><span class="src">動いた先で怒られる／判断に自信がない</span></td>
+            <td class="no">結果だけを詰める（さらに動けなくなる）</td>
+            <td class="yes">失敗の扱い方を変える。任せ方と確認の仕方を、踏み出せる幅に調整する</td>
+          </tr>
+          <tr>
+            <td>信用していない<br><span class="src">こちらの言葉を受け取る気がない</span></td>
+            <td class="no">正論を通す（内容の問題ではない）</td>
+            <td class="yes">土台の柱に戻る。言う側の実力と人間性を先に積む</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <figcaption>四分類と対応する手は、外部の分析記事に書かれた記述を整理したもの。<span class="tier t2">二次</span>　本人がこの四分類を名前付きの枠組みとして語った一次資料は確認できていない。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>任せるかどうかの判断</h2>
+  <p class="h2-note">希望は否定せず、準備で判断し、渡した後も責任が続く</p>
+  <figure>
+    <div class="svg-hold">
+      <svg viewBox="0 0 720 330" role="img" aria-label="本人の希望から始まり、準備ができているかで分岐する委譲の判断。準備がなければ渡さずに準備を作り、渡した場合は数年後まで任せた側の責任が続く。">
+        <defs>
+          <marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <polygon points="0,1 9,5 0,9" fill="currentColor"/>
+          </marker>
+        </defs>
+
+        <rect x="20" y="128" width="150" height="60" fill="#1B2130" stroke="#5E6878"/>
+        <text x="95" y="153" font-size="13" fill="#EAE7E0" text-anchor="middle" font-weight="700">本人が望む</text>
+        <text x="95" y="173" font-size="11" fill="#767E8E" text-anchor="middle">店を持ちたい</text>
+
+        <line x1="172" y1="158" x2="222" y2="158" stroke="currentColor" marker-end="url(#ar4)"/>
+
+        <polygon points="310,110 400,158 310,206 220,158" fill="rgba(217,181,81,.10)" stroke="#D9B551"/>
+        <text x="310" y="154" font-size="12.5" fill="#D9B551" text-anchor="middle" font-weight="700">準備はあるか</text>
+        <text x="310" y="172" font-size="11" fill="#A7AEBC" text-anchor="middle">数年先まで持つか</text>
+
+        <line x1="310" y1="106" x2="310" y2="70" stroke="currentColor" marker-end="url(#ar4)"/>
+        <text x="322" y="88" font-size="11.5" fill="#A7AEBC">ある</text>
+        <rect x="410" y="40" width="280" height="62" fill="rgba(217,181,81,.14)" stroke="#D9B551"/>
+        <text x="550" y="66" font-size="13" fill="#D9B551" text-anchor="middle" font-weight="700">任せる</text>
+        <text x="550" y="86" font-size="11" fill="#A7AEBC" text-anchor="middle">独立や新グループまで見据えて送り出す</text>
+        <line x1="312" y1="70" x2="406" y2="70" stroke="currentColor" marker-end="url(#ar4)"/>
+
+        <line x1="310" y1="210" x2="310" y2="248" stroke="currentColor" marker-end="url(#ar4)"/>
+        <text x="322" y="234" font-size="11.5" fill="#A7AEBC">ない</text>
+        <rect x="410" y="218" width="280" height="62" fill="#1B2130" stroke="#5E6878"/>
+        <text x="550" y="244" font-size="13" fill="#EAE7E0" text-anchor="middle" font-weight="700">渡さない</text>
+        <text x="550" y="264" font-size="11" fill="#767E8E" text-anchor="middle">夢は否定せず、準備を作る側に回る</text>
+        <line x1="312" y1="249" x2="406" y2="249" stroke="currentColor" marker-end="url(#ar4)"/>
+
+        <path d="M410 116 L410 126 L690 126 L690 116" fill="none" stroke="#8C7430"/>
+        <text x="550" y="146" font-size="11.5" fill="#8C7430" text-anchor="middle">任せた側の責任は、渡した瞬間ではなく数年後まで続く</text>
+
+        <text x="20" y="308" font-size="11" fill="#767E8E">※ 判断の記述は外部の分析記事、送り出しの実例は本人のX投稿による</text>
+      </svg>
+    </div>
+    <figcaption>判断のねじれは「本人が望んでいるかどうか」を基準に置かないところにある。望んでいても準備がなければ渡さず、そのかわり希望そのものは否定せずに準備側の課題として引き受ける。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>個人の熱意に頼らないための外側</h2>
+  <p class="h2-note">プレイヤーが接客だけに集中できる状態を、誰が作っているか</p>
+  <figure>
+    <div class="svg-hold">
+      <svg viewBox="0 0 720 300" role="img" aria-label="プレイヤーを中心に、社塾が営業の型を渡し、バックオフィスが制作や広報を引き取り、グループの発信が認知を作る構造。">
+        <defs>
+          <marker id="ar5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <polygon points="0,1 9,5 0,9" fill="#D9B551"/>
+          </marker>
+        </defs>
+
+        <circle cx="360" cy="150" r="76" fill="rgba(217,181,81,.12)" stroke="#D9B551"/>
+        <text x="360" y="146" font-size="15" fill="#D9B551" text-anchor="middle" font-weight="700">プレイヤー</text>
+        <text x="360" y="168" font-size="11.5" fill="#A7AEBC" text-anchor="middle">接客に集中する</text>
+
+        <rect x="20" y="40" width="200" height="58" fill="#1B2130" stroke="#5E6878"/>
+        <text x="120" y="64" font-size="13" fill="#EAE7E0" text-anchor="middle" font-weight="700">社塾</text>
+        <text x="120" y="84" font-size="11" fill="#767E8E" text-anchor="middle">営業と人間性の型を言語化</text>
+        <line x1="222" y1="86" x2="300" y2="122" stroke="#D9B551" marker-end="url(#ar5)"/>
+        <text x="236" y="118" font-size="11" fill="#8C7430">型を渡す</text>
+
+        <rect x="20" y="202" width="200" height="58" fill="#1B2130" stroke="#5E6878"/>
+        <text x="120" y="226" font-size="13" fill="#EAE7E0" text-anchor="middle" font-weight="700">バックオフィス</text>
+        <text x="120" y="246" font-size="11" fill="#767E8E" text-anchor="middle">広報・撮影・デザイン</text>
+        <line x1="222" y1="214" x2="300" y2="180" stroke="#D9B551" marker-end="url(#ar5)"/>
+        <text x="236" y="200" font-size="11" fill="#8C7430">制作を引き取る</text>
+
+        <rect x="500" y="121" width="200" height="58" fill="#1B2130" stroke="#5E6878"/>
+        <text x="600" y="145" font-size="13" fill="#EAE7E0" text-anchor="middle" font-weight="700">グループの発信</text>
+        <text x="600" y="165" font-size="11" fill="#767E8E" text-anchor="middle">YouTube・SNS</text>
+        <line x1="496" y1="150" x2="440" y2="150" stroke="#D9B551" marker-end="url(#ar5)"/>
+        <text x="452" y="140" font-size="11" fill="#8C7430">認知を作る</text>
+
+        <text x="20" y="288" font-size="11" fill="#767E8E">※ 構成は業界メディアおよび求人メディアの記述による。部署名・編成の原典は未確認。</text>
+      </svg>
+    </div>
+    <figcaption>育成の型（社塾）と、雑務の分業（バックオフィス）と、集客の外部装置（発信）が、現場の一人ひとりの熱量とは別のところに置かれている。柱の一本が抜けた分を個人の頑張りで埋めさせない構造にあたる。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="apply">
+    <h3>採用支援の現場に読み替えるなら（ここから先は解釈）</h3>
+    <ul>
+      <li><b>応募が動かない理由も四つに割れる。</b>職種の仕事内容が分からない（理解）、条件は分かるが応募する理由がない（納得）、失敗したくない・入ってから合わなかったら困る（恐れ）、この会社の言うことが本当か分からない（不信）。原稿の直し方は、この四つのどれを潰すかで変わる。全部を同じ「魅力訴求」で書くと効かない。</li>
+      <li><b>「誰が言うか」は採用広報そのもの。</b>会社が何を言うかより、誰の顔でそれを言っているかが先に効く、という構図は求人原稿・スカウト・noteの設計順と一致する。</li>
+      <li><b>苦手は矯正せず変換する。</b>知名度がない、規模が小さい、給与で勝てない——を消しにいくのではなく、別の強みに置き換えて出す。打ち出し設計の考え方として、そのまま使える。</li>
+      <li><b>任せる判断は数年後まで責任が続く。</b>採用は「採った瞬間」ではなく「その人が数年後どうなるか」まで含めた判断だ、という線引きは、顧客に無理な採用計画を通さない根拠になる。</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>流通している説明の裏取り結果</h2>
+  <p class="h2-note">生成AIの要約などで見かける五つの論点を、出典の有無で判定した</p>
+  <div class="m-hold">
+    <div class="verify-wrap">
+    <table class="verify">
+      <thead><tr><th>論点</th><th class="mark">判定</th><th>根拠</th></tr></thead>
+      <tbody>
+        <tr><td>動けない原因を個別に見極め、原因ごとに手を変える</td><td class="mark ok">○</td><td>外部の分析記事に該当する記述あり。ただし本人の言葉としての一次資料は未確認 <span class="tier t2">二次</span></td></tr>
+        <tr><td>何を言うかより誰が言うか（信用が先）</td><td class="mark ok">○</td><td>同上。複数の検索経路で同一記事の記述として再現 <span class="tier t2">二次</span></td></tr>
+        <tr><td>準備不足のまま店を任せない／任せた側は数年後まで責任を負う</td><td class="mark ok">○</td><td>同上。本人のX投稿にある送り出しの実例とも整合 <span class="tier t2">二次</span> <span class="tier t1">一次</span></td></tr>
+        <tr><td>個性を矯正せず強みに変換する（本人は「陰キャ」を公言）</td><td class="mark ok">○</td><td>求人メディアの特集記事と外部の分析記事の双方に記述 <span class="tier t2">二次</span></td></tr>
+        <tr><td>常に100％のフラットを保ち、120％の無理はしない</td><td class="mark ng">×</td><td>この趣旨・言い回しの出典を見つけられなかった。近い人物評（温度感を保つ等）はあるが別物 <span class="tier t3">未確認</span></td></tr>
+        <tr><td>人見知りで「ファミレスで注文もできなかった」</td><td class="mark ng">×</td><td>言い回しを変えて検索しても出典に到達せず。この資料では採用していない <span class="tier t3">未確認</span></td></tr>
+        <tr><td>バックオフィスに法務（弁護士）を抱えている</td><td class="mark ng">△</td><td>広報・撮影・デザインの記述は見つかるが、法務の言及は確認できず <span class="tier t3">未確認</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section class="refs">
+  <h2>出典</h2>
+  <p class="h2-note">確認日：2026年9月12日／本文中の等級はこの一覧に対応する</p>
+  <ol>
+    <li><a href="https://x.com/Nexusblack7777/status/2025396949965517253">本人のX投稿「ホストは売れる迄だったら能力…」（2026年2月22日）</a> <span class="kind">一次</span></li>
+    <li><a href="https://x.com/Nexusblack7777/status/1926632154953331110">本人のX投稿（幹部の卒業と送り出しについて）</a> <span class="kind">一次</span></li>
+    <li><a href="https://x.com/Nexusblack7777">本人のXアカウント @Nexusblack7777</a> <span class="kind">一次</span></li>
+    <li><a href="https://kinoshitahiroshi.com/2025/01/30/yashiro-mio/">「ホスト業界の天才経営者､社美緒に『マネジメントの本質』を見た」（2025年1月30日）</a> <span class="kind">二次／本人の発信を第三者が分析した記事</span></li>
+    <li><a href="https://hostle.jp/feature/id/217.html">ホストル「社美緒とは？ 経歴と“人を惹きつける理由”」</a> <span class="kind">二次</span></li>
+    <li><a href="https://hostjob.jp/magazine/9997/">体入ホスパラNAVI「Group YGD／グループユグドラシルとは？」</a> <span class="kind">二次</span></li>
+    <li><a href="https://note.com/jets1977/n/nb29efb18f661">note「【メモ】社美緒のホスト塾」</a> <span class="kind">二次／受講者のメモ</span></li>
+    <li><a href="https://horeru.com/column/95353/">horeru.com「人間力から育てる次世代の歌舞伎町教育論」（一条ヒカルとの対談）</a> <span class="kind">二次／本文は未取得</span></li>
+    <li><a href="https://www.youtube.com/@yggdrasilltv">YouTube「ユグドラシルTV」</a>／<a href="https://www.youtube.com/@mioyashirotv5415">「Mio Yashiro TV」</a> <span class="kind">一次の発信元だが、本作業では動画本編を視聴できていない</span></li>
+  </ol>
+  <footer>
+    <p>この資料は公開情報のみで構成した再構成であり、本人およびGroup YGGDRASILLに確認を取ったものではない。作業環境の制約で公式サイト・YouTube本編・記事原文に直接アクセスできず、検索結果の要約を経由した記述が含まれる。断定の強さは各項目の等級に従って読んでほしい。人物の肩書・グループの規模（店舗数・在籍人数）は情報源ごとに数字が食い違うため、この資料では扱っていない。</p>
+  </footer>
+</section>
+
+</div>
