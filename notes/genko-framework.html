@@ -1,0 +1,380 @@
+<title>原稿を書く前の思考順序</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --paper:#F6F6F3;
+    --panel:#FFFFFF;
+    --panel-2:#EDEDE8;
+    --ink:#16181A;
+    --ink-2:#454A4E;
+    --ink-3:#7C8388;
+    --line:#DCDCD5;
+    --line-2:#C3C3BA;
+    --red:#C0392B;
+    --red-soft:#F7EAE8;
+    --red-line:#D98376;
+    --grid:rgba(22,24,26,.055);
+    --hand:"Klee One",'Yu Mincho',serif;
+    --sans:"Noto Sans JP",'Hiragino Sans','Yu Gothic',sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#141516; --panel:#1C1E20; --panel-2:#24272A;
+      --ink:#EDEDE8; --ink-2:#B4B9BD; --ink-3:#7E868B;
+      --line:#2E3134; --line-2:#3E4347;
+      --red:#E08A7C; --red-soft:#2B1D1B; --red-line:#8C4C41;
+      --grid:rgba(237,237,232,.05);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#141516; --panel:#1C1E20; --panel-2:#24272A;
+    --ink:#EDEDE8; --ink-2:#B4B9BD; --ink-3:#7E868B;
+    --line:#2E3134; --line-2:#3E4347;
+    --red:#E08A7C; --red-soft:#2B1D1B; --red-line:#8C4C41;
+    --grid:rgba(237,237,232,.05);
+  }
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:16px;line-height:1.9;
+    margin:0;padding:0 20px 90px;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:58rem;margin:0 auto}
+  p{margin:0 0 1em;max-width:34rem}
+  a{color:var(--red)}
+  a:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+  /* 原稿用紙のマス目を表紙にだけ薄く敷く */
+  header{
+    padding:60px 26px 36px;margin-top:28px;
+    background-color:var(--panel);
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:26px 26px;
+    border:1px solid var(--line);
+  }
+  .eyebrow{font-size:.72rem;letter-spacing:.2em;color:var(--red);font-weight:700;margin:0 0 16px}
+  h1{font-family:var(--hand);font-weight:600;font-size:clamp(2rem,5.6vw,3.1rem);line-height:1.35;margin:0 0 16px;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--ink-2);max-width:35rem;margin:0}
+  .scope{margin-top:24px;display:flex;flex-wrap:wrap;gap:8px 10px}
+  .chip{font-size:.75rem;padding:4px 12px;border:1px solid var(--line-2);color:var(--ink-2);white-space:nowrap;background:var(--paper)}
+
+  .claim{margin:32px 0 0;padding:24px 26px;background:var(--red-soft);border-left:3px solid var(--red)}
+  .claim p{margin:0;max-width:38rem;color:var(--ink);font-size:1.02rem}
+  .claim b{font-weight:700}
+
+  section{padding-block:48px;border-top:1px solid var(--line)}
+  .step{font-size:.72rem;letter-spacing:.18em;color:var(--red);font-weight:700;margin:0 0 10px}
+  h2{font-family:var(--hand);font-weight:600;font-size:clamp(1.35rem,3.3vw,1.75rem);line-height:1.5;margin:0 0 14px;text-wrap:balance}
+
+  figure{margin:28px 0 0;padding:0}
+  .svg-hold{background:var(--panel);border:1px solid var(--line);padding:20px 16px;overflow-x:auto}
+  figure svg{display:block;width:100%;max-width:100%;height:auto}
+  figcaption{font-size:.82rem;color:var(--ink-3);margin-top:10px;line-height:1.7;max-width:42rem}
+  .note{font-size:.82rem;color:var(--ink-3);margin-top:12px;line-height:1.7;max-width:42rem}
+
+  .s-box{fill:var(--panel-2);stroke:var(--line-2)}
+  .s-redbox{fill:var(--red-soft);stroke:var(--red)}
+  .s-plain{fill:var(--panel);stroke:var(--line-2)}
+  .s-stroke{stroke:var(--line-2);fill:none}
+  .t{fill:var(--ink);font-family:var(--sans)}
+  .t2{fill:var(--ink-2);font-family:var(--sans)}
+  .t3{fill:var(--ink-3);font-family:var(--sans)}
+  .tr{fill:var(--red);font-family:var(--sans)}
+  .b{font-weight:700}
+
+  table{width:100%;border-collapse:collapse;font-size:.9rem}
+  th{text-align:left;font-size:.7rem;letter-spacing:.12em;color:var(--ink-3);font-weight:700;padding:0 14px 10px;border-bottom:1px solid var(--line-2)}
+  td{padding:16px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.7;color:var(--ink-2)}
+  td:first-child{color:var(--ink);font-weight:700;width:22%}
+  td .ex{display:block;color:var(--ink);margin-top:6px}
+  .t-hold{overflow-x:auto}
+  .t-min{min-width:42rem}
+
+  .check{background:var(--panel);border:1px solid var(--line);padding:26px 24px;margin-top:26px}
+  .check h3{font-size:.95rem;margin:0 0 16px;font-weight:700}
+  .check ol{margin:0;padding-left:1.3em;color:var(--ink-2);font-size:.93rem}
+  .check li{margin-bottom:.7em}
+  .check li:last-child{margin-bottom:0}
+  .check li b{color:var(--ink)}
+
+  .guard{background:var(--panel-2);border-left:3px solid var(--line-2);padding:20px 22px;margin-top:26px}
+  .guard p{margin:0;font-size:.9rem;color:var(--ink-2);max-width:38rem}
+
+  footer{padding-top:34px;border-top:1px solid var(--line);font-size:.8rem;color:var(--ink-3);line-height:1.8}
+  footer p{max-width:40rem}
+
+  @media (max-width:620px){
+    header{padding:44px 20px 28px}
+    td:first-child{width:auto}
+  }
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">求人原稿・スカウトを書く前に通す手順</p>
+  <h1>応募しない理由から<br>書きはじめる</h1>
+  <p class="lede">社美緒のマネジメントにある「動けない原因を四つに割って、打ち手を変える」という順序を、原稿づくりに置き換えた思考の枠組み。</p>
+  <div class="scope">
+    <span class="chip">対象：求人原稿・スカウト</span>
+    <span class="chip">媒体を問わない共通部分だけ</span>
+    <span class="chip">作成：2026年9月12日</span>
+  </div>
+</header>
+
+<div class="claim">
+  <p>応募が来ない原稿の多くは、魅力が足りないのではなく、<b>読み手が止まる理由が四つあるのに、打ち手が「魅力を足す」の一つしかない</b>状態になっている。足すのではなく、どれで止まっているかを決めてから、そこだけを潰す。</p>
+</div>
+
+<section>
+  <p class="step">工程 1 ／ どこで落ちているかを決める</p>
+  <h2>直す場所は、落ちている段で変わる</h2>
+  <p>原稿全体を書き直す前に、どの段で落ちているかを先に決める。段が違えば直す場所が違うので、ここを飛ばすと本文を直して見つからない状態が続く、ということが起きる。</p>
+
+  <figure>
+    <div class="svg-hold">
+      <svg viewBox="0 0 760 300" role="img" aria-label="見つかる、開く、読み切る、応募する、面接に来る、の五段階と、それぞれの段で落ちているときに直す場所を示した図。">
+        <text x="20" y="24" class="t3" font-size="11.5">読み手が進む順</text>
+
+        <rect x="20" y="40" width="138" height="58" class="s-box"/>
+        <text x="89" y="66" class="t b" font-size="13" text-anchor="middle">見つかる</text>
+        <text x="89" y="86" class="t3" font-size="10.5" text-anchor="middle">検索・配信に乗る</text>
+
+        <rect x="168" y="40" width="138" height="58" class="s-box"/>
+        <text x="237" y="66" class="t b" font-size="13" text-anchor="middle">開く</text>
+        <text x="237" y="86" class="t3" font-size="10.5" text-anchor="middle">一覧から選ばれる</text>
+
+        <rect x="316" y="40" width="138" height="58" class="s-box"/>
+        <text x="385" y="66" class="t b" font-size="13" text-anchor="middle">読み切る</text>
+        <text x="385" y="86" class="t3" font-size="10.5" text-anchor="middle">離脱せず最後まで</text>
+
+        <rect x="464" y="40" width="138" height="58" class="s-redbox"/>
+        <text x="533" y="66" class="tr b" font-size="13" text-anchor="middle">応募する</text>
+        <text x="533" y="86" class="t2" font-size="10.5" text-anchor="middle">四つの理由が効く段</text>
+
+        <rect x="612" y="40" width="128" height="58" class="s-box"/>
+        <text x="676" y="66" class="t b" font-size="13" text-anchor="middle">面接に来る</text>
+        <text x="676" y="86" class="t3" font-size="10.5" text-anchor="middle">期待どおりだった</text>
+
+        <line x1="20" y1="128" x2="740" y2="128" class="s-stroke"/>
+        <text x="20" y="152" class="t3" font-size="11.5">ここが落ちているなら、直すのは</text>
+
+        <text x="89" y="184" class="t2" font-size="11.5" text-anchor="middle">職種名</text>
+        <text x="89" y="202" class="t2" font-size="11.5" text-anchor="middle">検索語の入れ方</text>
+
+        <text x="237" y="184" class="t2" font-size="11.5" text-anchor="middle">タイトル</text>
+        <text x="237" y="202" class="t2" font-size="11.5" text-anchor="middle">件名の具体性</text>
+
+        <text x="385" y="184" class="t2" font-size="11.5" text-anchor="middle">冒頭の数行</text>
+        <text x="385" y="202" class="t2" font-size="11.5" text-anchor="middle">段落の順番</text>
+
+        <text x="533" y="184" class="tr b" font-size="11.5" text-anchor="middle">本文の中身</text>
+        <text x="533" y="202" class="tr b" font-size="11.5" text-anchor="middle">（次の図へ）</text>
+
+        <text x="676" y="184" class="t2" font-size="11.5" text-anchor="middle">条件の書き方</text>
+        <text x="676" y="202" class="t2" font-size="11.5" text-anchor="middle">盛らない</text>
+
+        <text x="20" y="256" class="t3" font-size="11">※ 段の並びだけを示した模式図で、箱の大きさに人数の意味はない。</text>
+        <text x="20" y="276" class="t3" font-size="11">※ どの段で落ちているかは、掲載している媒体の実績だけを見て判断する。別媒体の数字を根拠にしない。</text>
+      </svg>
+    </div>
+    <figcaption>本文をいくら磨いても、落ちているのが「見つかる」段なら結果は動かない。逆に見つかって開かれているのに応募がないなら、直す対象は次の四つに絞られる。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <p class="step">工程 2 ／ 止まる理由を四つに割る</p>
+  <h2>読み手が応募しない理由は四つしかない</h2>
+  <p>部下が動かない理由と同じ四つが、そのまま読み手にも当てはまる。同じ「応募しない」でも、必要な打ち手は逆方向になることがある。</p>
+
+  <div class="t-hold">
+    <div class="t-min">
+      <table>
+        <thead>
+          <tr><th>止まっている理由</th><th>読み手の頭の中</th><th>原稿で打つ手</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>分からない</td>
+            <td>何をする仕事か、誰を求めているのかが読み取れない。給与の幅が広すぎて自分がどこか分からない。</td>
+            <td>具体の粒度を上げる。一日の流れ、担当する相手、数字の内訳。抽象的な魅力を一つ減らして、事実を一つ足す。<span class="ex">「幅広い業務」ではなく、何と何をどの割合で。</span></td>
+          </tr>
+          <tr>
+            <td>理由がない</td>
+            <td>条件は分かった。ただ、今の会社を辞めてまで移る理由がない。</td>
+            <td>比較の軸を置く。今いる環境で解けない何が、ここでは解けるのか。会社の自慢ではなく、読み手の不満の解消として書く。<span class="ex">主語を会社から読み手に移す。</span></td>
+          </tr>
+          <tr>
+            <td>怖い</td>
+            <td>未経験で務まるのか。入ってから思っていたのと違ったらどうするか。</td>
+            <td>失敗の扱いを書く。つまずく人がどこでつまずき、何で支えているか。入社後の最初の三か月を具体的に。<span class="ex">「安心の研修制度」は不安を消さない。手順を書く。</span></td>
+          </tr>
+          <tr>
+            <td>信じられない</td>
+            <td>どこも同じことを書いている。良いことしか書いていない。</td>
+            <td>言う人を変える。社員の名前と経歴、代表の言葉、数字の出どころ。都合の悪いことを一つ書くと、残りが読めるようになる。<span class="ex">主語が「当社」のままだと解けない。</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="note">四つのうち、その求人で一番大きいものを一つ決める。全部を一本の原稿で潰そうとすると、どれにも届かない文量になる。</p>
+</section>
+
+<section>
+  <p class="step">工程 3 ／ 誰の口で言うか決める</p>
+  <h2>何を言うかより、誰が言うか</h2>
+  <p>同じ内容でも、話者が変わると効く理由が変わる。特に「信じられない」は、文章をうまくしても解けず、話者を変えるしかない。</p>
+
+  <figure>
+    <div class="svg-hold">
+      <svg viewBox="0 0 760 330" role="img" aria-label="会社・現場社員・代表・同じ経歴で入った人という四つの話者が、分からない・理由がない・怖い・信じられない のどの理由に効くかを結んだ図。">
+        <text x="20" y="24" class="t3" font-size="11.5">誰の口で言うか</text>
+        <text x="520" y="24" class="t3" font-size="11.5">解ける理由</text>
+
+        <rect x="20" y="40" width="210" height="48" class="s-box"/>
+        <text x="38" y="70" class="t b" font-size="12.5">会社として</text>
+        <rect x="20" y="108" width="210" height="48" class="s-box"/>
+        <text x="38" y="138" class="t b" font-size="12.5">現場の社員</text>
+        <rect x="20" y="176" width="210" height="48" class="s-box"/>
+        <text x="38" y="206" class="t b" font-size="12.5">代表・役員</text>
+        <rect x="20" y="244" width="210" height="48" class="s-redbox"/>
+        <text x="38" y="268" class="tr b" font-size="12.5">同じ経歴で入った人</text>
+        <text x="38" y="285" class="t2" font-size="10.5">読み手と前職が重なる社員</text>
+
+        <rect x="520" y="40" width="220" height="48" class="s-plain"/>
+        <text x="538" y="70" class="t" font-size="12.5">分からない</text>
+        <rect x="520" y="108" width="220" height="48" class="s-plain"/>
+        <text x="538" y="138" class="t" font-size="12.5">理由がない</text>
+        <rect x="520" y="176" width="220" height="48" class="s-plain"/>
+        <text x="538" y="206" class="t" font-size="12.5">怖い</text>
+        <rect x="520" y="244" width="220" height="48" class="s-plain"/>
+        <text x="538" y="274" class="t" font-size="12.5">信じられない</text>
+
+        <line x1="232" y1="64" x2="516" y2="64" class="s-stroke"/>
+        <line x1="232" y1="132" x2="516" y2="70" class="s-stroke"/>
+        <line x1="232" y1="132" x2="516" y2="200" class="s-stroke"/>
+        <line x1="232" y1="200" x2="516" y2="132" class="s-stroke"/>
+        <line x1="232" y1="268" x2="516" y2="206" stroke="var(--red)"/>
+        <line x1="232" y1="268" x2="516" y2="268" stroke="var(--red)"/>
+
+        <text x="374" y="56" class="t3" font-size="10.5" text-anchor="middle">条件・事実</text>
+        <text x="374" y="168" class="t3" font-size="10.5" text-anchor="middle">仕事の中身と空気</text>
+        <text x="374" y="160" class="t3" font-size="10.5" text-anchor="middle"> </text>
+        <text x="300" y="196" class="t3" font-size="10.5">事業の意味</text>
+        <text x="330" y="300" class="tr" font-size="10.5">自分にもできた、の証明</text>
+      </svg>
+    </div>
+    <figcaption>会社名義で書けるのは条件と事実まで。「怖い」と「信じられない」は、読み手と経歴が重なる社員の言葉が一番効く。取材でその人を一人確保できるかどうかが、原稿の上限を決めることが多い。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <p class="step">工程 4 ／ どこまで届かせるか決める</p>
+  <h2>条件で釣った応募は、条件で抜ける</h2>
+
+  <figure>
+    <div class="svg-hold">
+      <svg viewBox="0 0 720 260" role="img" aria-label="条件・働き方・意味の三層と、そこまでしか書かなかったときに起きること。">
+        <text x="150" y="24" class="t3" font-size="11.5">原稿が触れている層</text>
+        <text x="470" y="24" class="t3" font-size="11.5">そこで止めると起きること</text>
+
+        <rect x="20" y="40" width="420" height="54" class="s-redbox"/>
+        <text x="40" y="66" class="tr b" font-size="13.5">意味</text>
+        <text x="40" y="85" class="t2" font-size="11.5">何のための事業か／この仕事が誰を助けるか</text>
+        <text x="470" y="73" class="t2" font-size="11.5">母集団は絞られるが、残る人が変わる</text>
+
+        <rect x="20" y="104" width="420" height="54" class="s-box"/>
+        <text x="40" y="130" class="t b" font-size="13.5">働き方</text>
+        <text x="40" y="149" class="t2" font-size="11.5">誰と、どう進めるか／何で評価されるか</text>
+        <text x="470" y="137" class="t2" font-size="11.5">入社後のギャップが減る</text>
+
+        <rect x="20" y="168" width="420" height="54" class="s-box"/>
+        <text x="40" y="194" class="t b" font-size="13.5">条件</text>
+        <text x="40" y="213" class="t2" font-size="11.5">給与・休日・勤務地・働く時間</text>
+        <text x="470" y="201" class="t2" font-size="11.5">応募は来る。より良い条件で抜ける</text>
+      </svg>
+    </div>
+    <figcaption>条件は検討の入口に乗るための層で、そこだけで書いた原稿は応募数では成功に見える。続くかどうかは上の二層で決まるので、応募数だけを見て原稿の良し悪しを判断しない。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <p class="step">工程 5 ／ 手を動かす順番</p>
+  <h2>訴求は、事実からしか作れない</h2>
+
+  <figure>
+    <div class="svg-hold">
+      <svg viewBox="0 0 760 250" role="img" aria-label="誰に書くか決める、止まる理由を一つ決める、事実を集める、話者を決める、型に流す、四つの理由で検品する、という順序。事実が足りない場合は取材に戻る。">
+        <defs>
+          <marker id="ga" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 9,5 0,9" fill="currentColor"/>
+          </marker>
+        </defs>
+        <g color="var(--line-2)">
+        <rect x="20" y="60" width="130" height="62" class="s-box"/>
+        <text x="85" y="86" class="t b" font-size="12" text-anchor="middle">誰に書くか</text>
+        <text x="85" y="105" class="t3" font-size="10.5" text-anchor="middle">今どこで詰まる人か</text>
+
+        <line x1="152" y1="91" x2="172" y2="91" stroke="currentColor" marker-end="url(#ga)"/>
+
+        <rect x="174" y="60" width="130" height="62" class="s-redbox"/>
+        <text x="239" y="86" class="tr b" font-size="12" text-anchor="middle">理由を一つ</text>
+        <text x="239" y="105" class="t2" font-size="10.5" text-anchor="middle">四つから選ぶ</text>
+
+        <line x1="306" y1="91" x2="326" y2="91" stroke="currentColor" marker-end="url(#ga)"/>
+
+        <rect x="328" y="60" width="130" height="62" class="s-box"/>
+        <text x="393" y="86" class="t b" font-size="12" text-anchor="middle">事実を集める</text>
+        <text x="393" y="105" class="t3" font-size="10.5" text-anchor="middle">取材・公開情報</text>
+
+        <line x1="460" y1="91" x2="480" y2="91" stroke="currentColor" marker-end="url(#ga)"/>
+
+        <rect x="482" y="60" width="120" height="62" class="s-box"/>
+        <text x="542" y="86" class="t b" font-size="12" text-anchor="middle">話者を決める</text>
+        <text x="542" y="105" class="t3" font-size="10.5" text-anchor="middle">誰の口で言うか</text>
+
+        <line x1="604" y1="91" x2="624" y2="91" stroke="currentColor" marker-end="url(#ga)"/>
+
+        <rect x="626" y="60" width="114" height="62" class="s-box"/>
+        <text x="683" y="86" class="t b" font-size="12" text-anchor="middle">型に流す</text>
+        <text x="683" y="105" class="t3" font-size="10.5" text-anchor="middle">構成は変えない</text>
+
+        <path d="M393 126 L393 160 L239 160 L239 126" fill="none" stroke="var(--red)" marker-end="url(#ga)" color="var(--red)"/>
+        <text x="316" y="180" class="tr" font-size="11" text-anchor="middle">事実が出てこない訴求は、選び直す</text>
+
+        <text x="20" y="222" class="t3" font-size="11.5">型（構成の順番）は媒体ごとに固定して使い回し、企業ごとに変えるのは訴求の当て方だけにする。</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>いちばん飛ばしやすいのが三つ目。事実が集まらないまま訴求を決めると、書けるのは他社と同じ言葉だけになり、結果として「信じられない」を自分で作ることになる。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <p class="step">工程 6 ／ 出す前に戻る</p>
+  <h2>検品は、四つの理由に戻って読む</h2>
+  <div class="check">
+    <h3>提出前チェック</h3>
+    <ol>
+      <li><b>選んだ一つの理由は潰れているか。</b>読み手が「分からない」で止まっていたはずなのに、書き上がったものが会社の自慢になっていないか。</li>
+      <li><b>事実で言えているか。</b>形容詞を全部消しても意味が残るか。残らない段落は、事実が足りていない。</li>
+      <li><b>主語は読み手側にあるか。</b>「当社は」で始まる段落が続いていないか。</li>
+      <li><b>都合の悪いことが一つ書いてあるか。</b>ひとつもないと、良いことの側も読まれない。</li>
+      <li><b>面接で同じ話ができるか。</b>原稿でしか言えないことを書くと、次の段で落ちる。</li>
+    </ol>
+  </div>
+
+  <div class="guard">
+    <p>この枠組みには、媒体ごとの数値・効果・タイトルの傾向を一切入れていない。どの媒体で得た知見かが混ざると、別の媒体で根拠として使われてしまうため。実際の原稿に落とすときは、その媒体の実績だけを根拠にして、他媒体から持ってきた考えは「仮説」として出典つきで扱う。</p>
+  </div>
+</section>
+
+<footer>
+  <p>四つに割って打ち手を変える、事実から書く、誰が言うかを先に作る、型と当て方を分ける——という骨組みは、Group YGGDRASILL 会長・社美緒のマネジメントを第三者がまとめた分析記事に基づく（本人の発言そのままではない）。理論側の整理は <a href="https://claude.ai/code/artifact/0b5d70ed-0a8b-4438-a09d-4472fa8c26f7">社美緒のマネジメント理論</a>、部下育成への転用は <a href="https://claude.ai/code/artifact/1ab20ded-9ad0-4b2e-8e30-8a6bc78ab572">新人が動かないときの手順</a> にある。</p>
+  <p>読み手が止まる四つの理由への読み替え、段階別の切り分け、話者と理由の対応、検品項目は、いずれも原稿作成向けに組み直した運用案であり、出典のある記述ではない。</p>
+</footer>
+
+</div>
