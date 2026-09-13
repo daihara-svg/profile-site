@@ -1,0 +1,405 @@
+<title>新人が動かないときの手順</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@600;700&display=swap">
+<style>
+  :root{
+    --paper:#FAFAF7;
+    --panel:#FFFFFF;
+    --panel-2:#F2F2EC;
+    --ink:#1B222B;
+    --ink-2:#48545F;
+    --ink-3:#79838F;
+    --line:#DEDDD5;
+    --line-2:#C9C8BE;
+    --accent:#27466F;
+    --accent-soft:#E7ECF4;
+    --accent-line:#8FA6C4;
+    --warn:#A8452C;
+    --warn-soft:#F6EAE6;
+    --mincho:"Zen Old Mincho",'Yu Mincho',serif;
+    --gothic:"Zen Kaku Gothic New",'Hiragino Sans','Yu Gothic',sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#12161B; --panel:#1A1F26; --panel-2:#212832;
+      --ink:#E9E9E4; --ink-2:#B2BAC4; --ink-3:#7D8792;
+      --line:#2C333C; --line-2:#3C4550;
+      --accent-line:#46617F;
+      --warn:#D98B72; --warn-soft:#2A1D18;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#12161B; --panel:#1A1F26; --panel-2:#212832;
+    --ink:#E9E9E4; --ink-2:#B2BAC4; --ink-3:#7D8792;
+    --line:#2C333C; --line-2:#3C4550;
+    --accent:#8FB3E0; --accent-soft:#1E2A3A; --accent-line:#46617F;
+    --warn:#D98B72; --warn-soft:#2A1D18;
+  }
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--gothic);font-size:16px;line-height:1.85;
+    margin:0;padding:0 20px 88px;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:58rem;margin:0 auto}
+  p{margin:0 0 1em;max-width:34rem}
+  a{color:var(--accent)}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  header{padding-block:64px 32px}
+  .eyebrow{font-size:.72rem;letter-spacing:.2em;color:var(--accent);font-weight:700;margin:0 0 18px}
+  h1{font-family:var(--mincho);font-weight:700;font-size:clamp(2rem,5.4vw,3rem);line-height:1.3;margin:0 0 16px;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--ink-2);max-width:36rem;margin:0}
+  .scope{
+    margin-top:26px;display:flex;flex-wrap:wrap;gap:8px 10px;
+  }
+  .chip{
+    font-size:.76rem;padding:4px 12px;border:1px solid var(--line-2);
+    color:var(--ink-2);border-radius:2px;white-space:nowrap;
+  }
+
+  .lead-claim{
+    margin:34px 0 0;padding:24px 26px;background:var(--accent-soft);
+    border-left:3px solid var(--accent);
+  }
+  .lead-claim p{font-size:1.02rem;color:var(--ink);margin:0;max-width:38rem;line-height:1.85}
+  .lead-claim b{font-weight:700}
+
+  section{padding-block:48px;border-top:1px solid var(--line)}
+  .step{
+    font-family:var(--gothic);font-size:.72rem;letter-spacing:.18em;
+    color:var(--accent);font-weight:700;margin:0 0 10px;
+  }
+  h2{font-family:var(--mincho);font-weight:700;font-size:clamp(1.3rem,3.2vw,1.7rem);line-height:1.5;margin:0 0 14px;text-wrap:balance}
+
+  figure{margin:28px 0 0;padding:0}
+  .svg-hold{background:var(--panel);border:1px solid var(--line);padding:20px 16px;overflow-x:auto}
+  figure svg{display:block;width:100%;max-width:100%;height:auto}
+  figcaption{font-size:.82rem;color:var(--ink-3);margin-top:10px;line-height:1.7;max-width:42rem}
+
+  /* SVG は class 経由で配色し、両テーマで成立させる */
+  .s-panel{fill:var(--panel)}
+  .s-fill{fill:var(--panel-2)}
+  .s-acc-fill{fill:var(--accent-soft)}
+  .s-stroke{stroke:var(--line-2);fill:none}
+  .s-acc-stroke{stroke:var(--accent);fill:none}
+  .s-box{fill:var(--panel-2);stroke:var(--line-2)}
+  .s-accbox{fill:var(--accent-soft);stroke:var(--accent)}
+  .t{fill:var(--ink);font-family:var(--gothic)}
+  .t2{fill:var(--ink-2);font-family:var(--gothic)}
+  .t3{fill:var(--ink-3);font-family:var(--gothic)}
+  .ta{fill:var(--accent);font-family:var(--gothic)}
+  .tw{fill:var(--warn);font-family:var(--gothic)}
+  .b{font-weight:700}
+
+  table{width:100%;border-collapse:collapse;font-size:.9rem}
+  th{
+    text-align:left;font-size:.7rem;letter-spacing:.12em;color:var(--ink-3);
+    font-weight:700;padding:0 14px 10px;border-bottom:1px solid var(--line-2);
+  }
+  td{padding:16px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.7;color:var(--ink-2)}
+  td:first-child{color:var(--ink);font-weight:700;width:22%}
+  td .say{color:var(--ink);display:block}
+  .t-hold{overflow-x:auto}
+  .t-min{min-width:40rem}
+
+  .weekly{background:var(--panel);border:1px solid var(--line);padding:26px 24px;margin-top:26px}
+  .weekly h3{font-size:.95rem;margin:0 0 16px;font-weight:700}
+  .weekly ol{margin:0;padding-left:1.3em;color:var(--ink-2);font-size:.93rem}
+  .weekly li{margin-bottom:.65em}
+  .weekly li:last-child{margin-bottom:0}
+  .weekly li b{color:var(--ink)}
+
+  .dont{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1px;background:var(--line);margin-top:24px;border:1px solid var(--line)}
+  .dont div{background:var(--panel);padding:20px 20px}
+  .dont h4{margin:0 0 8px;font-size:.95rem;color:var(--warn);font-weight:700}
+  .dont p{margin:0;font-size:.88rem;color:var(--ink-2);max-width:none}
+
+  .after-note{font-size:.82rem;color:var(--ink-3);margin-top:12px;line-height:1.7;max-width:42rem}
+  footer{padding-top:36px;border-top:1px solid var(--line);font-size:.8rem;color:var(--ink-3);line-height:1.8}
+  footer p{max-width:40rem}
+
+  @media (max-width:620px){
+    td:first-child{width:auto}
+    .lead-claim{padding:20px}
+  }
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">入社〜半年の新人を持つ人のための手順書</p>
+  <h1>新人が動かないときの<br>手順</h1>
+  <p class="lede">社美緒（Group YGGDRASILL 会長）のマネジメントから、新人育成にそのまま移せる部分だけを抜き出して、現場の手順に組み直したもの。</p>
+  <div class="scope">
+    <span class="chip">対象：入社〜半年</span>
+    <span class="chip">場面：1on1・同行後・日報の返し</span>
+    <span class="chip">作成：2026年9月12日</span>
+  </div>
+
+  <div class="lead-claim">
+    <p>新人が動かないとき、<b>原因は四つあるのに、打ち手が「強く言う」の一つしかない</b>状態が一番多い。理解していない相手を強く詰めれば萎縮するだけで、納得していない相手を待っても変わらない。原因を先に見分けて、変えるのは相手ではなく自分の側の五つ、という順番にする。</p>
+  </div>
+</header>
+
+<section>
+  <p class="step">工程 1 ／ 見当をつける</p>
+  <h2>時期によって、出やすい原因が入れ替わる</h2>
+  <p>同じ「動けていない」でも、入社直後とひと通り回せるようになった後では中身が違う。どの原因を先に疑うかの当たりをつけてから1on1に入る。</p>
+
+  <figure>
+    <div class="svg-hold">
+      <svg viewBox="0 0 760 320" role="img" aria-label="入社からの時期別に、理解・恐れ・納得・不信のどの原因が出やすいかを示した図。入社直後は理解、慣れてきた頃は恐れ、成果が出ない時期に納得と不信が出やすい。">
+        <text x="150" y="26" class="t3" font-size="11.5">〜1ヶ月</text>
+        <text x="300" y="26" class="t3" font-size="11.5">1〜3ヶ月</text>
+        <text x="450" y="26" class="t3" font-size="11.5">3〜6ヶ月</text>
+        <text x="600" y="26" class="t3" font-size="11.5">6ヶ月〜</text>
+        <line x1="140" y1="36" x2="740" y2="36" class="s-stroke"/>
+
+        <text x="130" y="72" class="t b" font-size="13" text-anchor="end">理解</text>
+        <text x="130" y="90" class="t3" font-size="10.5" text-anchor="end">やり方が分からない</text>
+        <rect x="140" y="52" width="150" height="44" class="s-accbox"/>
+        <text x="215" y="79" class="ta b" font-size="12" text-anchor="middle">まずここ</text>
+        <rect x="290" y="52" width="150" height="44" class="s-accbox" opacity=".5"/>
+        <rect x="440" y="52" width="150" height="44" class="s-box"/>
+        <rect x="590" y="52" width="150" height="44" class="s-box"/>
+
+        <text x="130" y="142" class="t b" font-size="13" text-anchor="end">恐れ</text>
+        <text x="130" y="160" class="t3" font-size="10.5" text-anchor="end">失敗が怖い</text>
+        <rect x="140" y="122" width="150" height="44" class="s-box"/>
+        <rect x="290" y="122" width="150" height="44" class="s-accbox"/>
+        <text x="365" y="149" class="ta b" font-size="12" text-anchor="middle">ここが山</text>
+        <rect x="440" y="122" width="150" height="44" class="s-accbox" opacity=".5"/>
+        <rect x="590" y="122" width="150" height="44" class="s-box"/>
+
+        <text x="130" y="212" class="t b" font-size="13" text-anchor="end">納得</text>
+        <text x="130" y="230" class="t3" font-size="10.5" text-anchor="end">やる理由が要る</text>
+        <rect x="140" y="192" width="150" height="44" class="s-box"/>
+        <rect x="290" y="192" width="150" height="44" class="s-box"/>
+        <rect x="440" y="192" width="150" height="44" class="s-accbox"/>
+        <text x="515" y="219" class="ta b" font-size="12" text-anchor="middle">出てくる</text>
+        <rect x="590" y="192" width="150" height="44" class="s-accbox" opacity=".5"/>
+
+        <text x="130" y="282" class="t b" font-size="13" text-anchor="end">不信</text>
+        <text x="130" y="300" class="t3" font-size="10.5" text-anchor="end">この人の話を聞く気がない</text>
+        <rect x="140" y="262" width="150" height="44" class="s-box"/>
+        <rect x="290" y="262" width="150" height="44" class="s-box"/>
+        <rect x="440" y="262" width="150" height="44" class="s-accbox" opacity=".5"/>
+        <rect x="590" y="262" width="150" height="44" class="s-accbox"/>
+        <text x="665" y="289" class="ta b" font-size="12" text-anchor="middle">ここで効く</text>
+      </svg>
+    </div>
+    <figcaption>濃い枠＝その時期に最初に疑うもの。入社直後に「納得していないのでは」と考え込むのも、半年たって「まだ分かっていない」と教え直すのも、ずれた手になりやすい。時期の区切りは目安で、職種と立ち上がりの速さで前後する。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <p class="step">工程 2 ／ 見分ける</p>
+  <h2>1on1の頭で、四問を順に当てる</h2>
+  <p>上から順に聞いて、引っかかったところで止める。先に結論を出さず、四問目まで来たときだけ自分の側を疑う。</p>
+
+  <figure>
+    <div class="svg-hold">
+      <svg viewBox="0 0 760 470" role="img" aria-label="四つの質問を順に当てて原因を見分けるフローチャート。手順が言えなければ理解不足、理由が自分の言葉にならなければ納得不足、失敗の想定が過剰に重ければ恐れ、最後の問いに何も出てこなければ不信を疑う。">
+        <defs>
+          <marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 9,5 0,9" fill="currentColor"/>
+          </marker>
+        </defs>
+        <g color="#79838F">
+
+        <rect x="20" y="24" width="360" height="62" class="s-box"/>
+        <text x="38" y="48" class="t3" font-size="10.5">問1</text>
+        <text x="38" y="70" class="t b" font-size="13.5">「この作業、手順を口で説明してみて」</text>
+        <line x1="380" y1="55" x2="470" y2="55" stroke="currentColor" marker-end="url(#fa)"/>
+        <rect x="480" y="24" width="260" height="62" class="s-accbox"/>
+        <text x="500" y="48" class="t2" font-size="11">詰まる・順番が飛ぶ</text>
+        <text x="500" y="70" class="ta b" font-size="14">理解していない</text>
+        <line x1="200" y1="86" x2="200" y2="120" stroke="currentColor" marker-end="url(#fa)"/>
+        <text x="212" y="108" class="t3" font-size="11">言える</text>
+
+        <rect x="20" y="128" width="360" height="62" class="s-box"/>
+        <text x="38" y="152" class="t3" font-size="10.5">問2</text>
+        <text x="38" y="174" class="t b" font-size="13.5">「これをやる理由、どう説明する？」</text>
+        <line x1="380" y1="159" x2="470" y2="159" stroke="currentColor" marker-end="url(#fa)"/>
+        <rect x="480" y="128" width="260" height="62" class="s-accbox"/>
+        <text x="500" y="152" class="t2" font-size="11">こちらの言葉の丸写し</text>
+        <text x="500" y="174" class="ta b" font-size="14">納得していない</text>
+        <line x1="200" y1="190" x2="200" y2="224" stroke="currentColor" marker-end="url(#fa)"/>
+        <text x="212" y="212" class="t3" font-size="11">自分の言葉になる</text>
+
+        <rect x="20" y="232" width="360" height="62" class="s-box"/>
+        <text x="38" y="256" class="t3" font-size="10.5">問3</text>
+        <text x="38" y="278" class="t b" font-size="13.5">「失敗したら何が起きると思ってる？」</text>
+        <line x1="380" y1="263" x2="470" y2="263" stroke="currentColor" marker-end="url(#fa)"/>
+        <rect x="480" y="232" width="260" height="62" class="s-accbox"/>
+        <text x="500" y="256" class="t2" font-size="11">想定が実際より重い</text>
+        <text x="500" y="278" class="ta b" font-size="14">怖くて動けない</text>
+        <line x1="200" y1="294" x2="200" y2="328" stroke="currentColor" marker-end="url(#fa)"/>
+        <text x="212" y="316" class="t3" font-size="11">現実的な範囲</text>
+
+        <rect x="20" y="336" width="360" height="62" class="s-box"/>
+        <text x="38" y="360" class="t3" font-size="10.5">問4</text>
+        <text x="38" y="382" class="t b" font-size="13.5">「俺のやり方で納得いかないところある？」</text>
+        <line x1="380" y1="367" x2="470" y2="367" stroke="currentColor" marker-end="url(#fa)"/>
+        <rect x="480" y="336" width="260" height="62" class="s-accbox"/>
+        <text x="500" y="360" class="t2" font-size="11">何も出てこない・言葉を選ぶ</text>
+        <text x="500" y="382" class="ta b" font-size="14">信用されていない</text>
+
+        <text x="20" y="436" class="t3" font-size="11.5">四問とも引っかからないなら、原因は本人ではなく仕事の与え方の側にある。量・締切・優先順位を疑う。</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>問4は聞きにくいが、ここが原因のときは他の三つをどれだけ直しても動かない。答えが出てこないこと自体が答えになる場合がある。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <p class="step">工程 3 ／ 手を変える</p>
+  <h2>変えるのは相手ではなく、自分の側の五つ</h2>
+  <p>伝え方・任せ方・確認の仕方・基準の見せ方・失敗の扱い方。原因ごとに、その場で言うことと、仕組みとして変えることを分けておく。</p>
+  <div class="t-hold">
+    <div class="t-min">
+      <table>
+        <thead>
+          <tr><th>原因</th><th>その場で言うこと</th><th>仕組みとして変えること</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>理解していない</td>
+            <td><span class="say">「一回こっちがやるから、見たあとで同じ手順を口で説明して」</span></td>
+            <td>基準の見せ方。完成形のサンプルを一つ渡す。口頭の説明より、良い例と悪い例を並べるほうが早い。</td>
+          </tr>
+          <tr>
+            <td>納得していない</td>
+            <td><span class="say">「これをやると、あなたの何が楽になるか説明する。違うと思ったら言って」</span></td>
+            <td>伝え方。会社の都合ではなく本人の時間軸で理由を置き直す。反論の余地を残すほうが早く動く。</td>
+          </tr>
+          <tr>
+            <td>怖くて動けない</td>
+            <td><span class="say">「失敗しても戻せる。責任はこっちが持つから、まず出して」</span></td>
+            <td>失敗の扱い方と確認の仕方。事前確認を一段増やし、事後の詰めを一段減らす。出す前に一回見る運用にする。</td>
+          </tr>
+          <tr>
+            <td>信用されていない</td>
+            <td><span class="say">（この場では何も足さない。指摘を一度引く）</span></td>
+            <td>自分の側。判断の過程と、自分がしくじった件を先に開示する。正論の量を増やしても逆効果になる。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="after-note">「強く言う」は五つの引き出しのどれでもない。使う場面はあるが、原因を見分けたあとの選択肢の一つに落とす。</p>
+</section>
+
+<section>
+  <p class="step">工程 4 ／ 渡す範囲を決める</p>
+  <h2>任せるかどうかは、意欲ではなく準備で決める</h2>
+  <p>やりたいと言っているかどうかを基準にすると、断ったときに人格評価になる。準備で決めると「何が揃えば渡すか」を同時に出せる。新人の場合は店や案件ではなく、日々のタスクの単位で同じことをする。</p>
+
+  <figure>
+    <div class="svg-hold">
+      <svg viewBox="0 0 760 340" role="img" aria-label="一人でできる範囲、同席や事後確認つきで渡す範囲、まだ渡さない範囲の三重の輪。毎週、内側の輪を一つ広げる。">
+        <circle cx="190" cy="170" r="140" class="s-box"/>
+        <circle cx="190" cy="170" r="95" class="s-box"/>
+        <circle cx="190" cy="170" r="50" class="s-accbox"/>
+        <text x="190" y="168" class="ta b" font-size="12.5" text-anchor="middle">一人で</text>
+        <text x="190" y="186" class="ta b" font-size="12.5" text-anchor="middle">できる</text>
+        <text x="190" y="105" class="t b" font-size="12" text-anchor="middle">同席・事後確認つき</text>
+        <text x="190" y="55" class="t2" font-size="12" text-anchor="middle">今は渡さない（見せるだけ）</text>
+
+        <line x1="190" y1="120" x2="190" y2="80" stroke="var(--accent)" stroke-dasharray="4 3"/>
+        <text x="205" y="132" class="ta" font-size="11">毎週ひとつ広げる</text>
+
+        <rect x="380" y="50" width="360" height="72" class="s-accbox"/>
+        <text x="400" y="76" class="t b" font-size="13">渡すときに必ず言う</text>
+        <text x="400" y="100" class="t2" font-size="12">「失敗したときの責任はこちらが持つ」</text>
+
+        <rect x="380" y="136" width="360" height="72" class="s-box"/>
+        <text x="400" y="162" class="t b" font-size="13">渡さないときに必ず言う</text>
+        <text x="400" y="186" class="t2" font-size="12">「何が揃ったら渡すか」を同じ場で出す</text>
+
+        <rect x="380" y="222" width="360" height="72" class="s-box"/>
+        <text x="400" y="248" class="t b" font-size="13">広げる判断の材料</text>
+        <text x="400" y="272" class="t2" font-size="12">一度成功したかではなく、二度同じ手順で再現できたか</text>
+      </svg>
+    </div>
+    <figcaption>渡した側の責任は渡した瞬間で終わらない、という考え方の新人版。日々のタスクなら数年ではなく数週間だが、「渡しっぱなしにしない」という構造は同じ。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <p class="step">工程 5 ／ 個性の扱い</p>
+  <h2>型は共通、当て方だけ個別にする</h2>
+  <p>苦手を矯正せず別の強みに変える、というやり方は、共通の型があって初めて成り立つ。型がないまま個性を尊重すると、うまくいった理由が本人にも残らない。</p>
+
+  <figure>
+    <div class="svg-hold">
+      <svg viewBox="0 0 760 280" role="img" aria-label="変えない型と、変えていい当て方の切り分け。型は手順や構成、当て方は話し方や得意な切り口。">
+        <rect x="20" y="30" width="340" height="170" class="s-box"/>
+        <text x="40" y="60" class="t b" font-size="14">変えない：型</text>
+        <text x="40" y="88" class="t2" font-size="12.5">架電と商談の順番</text>
+        <text x="40" y="112" class="t2" font-size="12.5">原稿・提案資料の構成</text>
+        <text x="40" y="136" class="t2" font-size="12.5">確認するタイミングと粒度</text>
+        <text x="40" y="172" class="t3" font-size="11.5">ここを人に合わせると、再現も指導もできなくなる</text>
+
+        <line x1="380" y1="30" x2="380" y2="200" class="s-stroke"/>
+
+        <rect x="400" y="30" width="340" height="170" class="s-accbox"/>
+        <text x="420" y="60" class="ta b" font-size="14">変えていい：当て方</text>
+        <text x="420" y="88" class="t2" font-size="12.5">話す速さ・語彙・熱量</text>
+        <text x="420" y="112" class="t2" font-size="12.5">得意な切り口（数字／現場／人）</text>
+        <text x="420" y="136" class="t2" font-size="12.5">先にどこから入るか</text>
+        <text x="420" y="172" class="t3" font-size="11.5">ここを型に合わせると、本人が持たない</text>
+
+        <text x="20" y="240" class="t3" font-size="11.5">明るく盛り上げる型を真似させる代わりに、知識で相手が知らない話題を出せる状態を作る、といった置き換えがこれにあたる。</text>
+      </svg>
+    </div>
+    <figcaption>新人に「自分のやり方でいい」と言うのは、型を渡し終えたあとで初めて成立する。順番を逆にすると放置になる。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <p class="step">工程 6 ／ 続ける</p>
+  <h2>週に一度、自分の側を点検する</h2>
+  <div class="weekly">
+    <h3>週次チェック（部下ひとりにつき5分）</h3>
+    <ol>
+      <li><b>今週、この人に対して五つのどれを変えたか。</b>（伝え方／任せ方／確認の仕方／基準の見せ方／失敗の扱い方）どれも変えていないなら、指導ではなく催促を繰り返している。</li>
+      <li><b>渡す範囲の輪を、今週ひとつ広げたか。</b>広げていないなら、その理由を準備の言葉で書けるか。</li>
+      <li><b>できていることを、本人に言葉で返したか。</b>手順が再現できた、という事実は本人には見えていない。</li>
+      <li><b>数字が出ている人ほど、見ていない時間が長くなっていないか。</b>売れていることと育っていることは別の層にある。</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <p class="step">やらない</p>
+  <h2>新人相手に持ち込むと逆に効くもの</h2>
+  <div class="dont">
+    <div>
+      <h4>原因を見ずに詰める</h4>
+      <p>理解不足の相手に強く言えば萎縮し、恐れが原因の相手には行動が止まる方向にしか働かない。</p>
+    </div>
+    <div>
+      <h4>嫌われないために言わない</h4>
+      <p>指摘を避けるのも同じ失敗で、原因を見ないまま何もしない状態になる。避けるべきは強さではなく無選別。</p>
+    </div>
+    <div>
+      <h4>いきなり自由にやらせる</h4>
+      <p>型を渡す前の「好きにやっていい」は裁量ではなく放置になる。成功しても理由が残らない。</p>
+    </div>
+    <div>
+      <h4>売上だけで育成を判断する</h4>
+      <p>数字は能力の層だけを映す。続くかどうかは別の層で決まるので、数字が出ている間も見る対象は変わらない。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>元にした考え方は、Group YGGDRASILL 会長・社美緒の発信を第三者がまとめた分析記事に基づく（原因の切り分け、変える対象の五つ、任せる判断、型と個性の扱い）。本人の発言そのままではないため、社外で「本人がこう言っている」という形では使わないこと。理論側の整理と出典の一覧は <a href="https://claude.ai/code/artifact/0b5d70ed-0a8b-4438-a09d-4472fa8c26f7">社美緒のマネジメント理論</a> にまとめてある。</p>
+  <p>時期ごとの原因の出やすさ、四つの問い、週次チェックの項目は、この考え方を新人育成向けに組み直した運用案であり、出典のある記述ではない。対象は入社〜半年を想定しているので、立ち上がりの速さや職種に応じて時期の区切りは動かして使う。</p>
+</footer>
+
+</div>
